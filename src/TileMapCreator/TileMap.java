@@ -1,3 +1,5 @@
+package TileMapCreator;
+
 public class TileMap {
     private Tile[][] map;
 
@@ -12,6 +14,15 @@ public class TileMap {
     public Tile getTile(int x, int y) {
         return map[x][y];
     }
+
+    public int getWidth() {
+        return map.length;
+    }
+
+    public int getHeight() {
+        return map[0].length;
+    }
+
 
     // Need to render, update, etc
 
