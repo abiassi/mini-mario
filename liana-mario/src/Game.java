@@ -9,6 +9,12 @@ public class Game {
     public Game(int delay){ //incomplete
         this.delay = delay;
     }
+public void init(){
+        Person person = new Person(100,300, PREFIX + "mario.png");
+        MyKeyboard myKeyboard = new MyKeyboard();
+        myKeyboard.init();
+        myKeyboard.setPerson(person);
 
+}
 }
 

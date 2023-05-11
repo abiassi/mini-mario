@@ -5,7 +5,7 @@ public class Person implements Collidable {
 
     ///Properties///
     private Picture picture;
-    private final int SPEED = 0;
+    private final int SPEED = 10;
     private boolean isJumping;
 
     private boolean isFalling;
@@ -35,6 +35,7 @@ public class Person implements Collidable {
     }
 
     public void moveLeft() {
+        System.out.println("moving left in moveleft");
         picture.translate(-SPEED, 0);
     }
 
