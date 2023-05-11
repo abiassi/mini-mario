@@ -1,10 +1,12 @@
-package TileMapCreator;
+package Tile;
 
 public enum TileType {
     SKY(0),
     GROUND_BRICK(1),
     MYSTERY_BOX(2),
-    BREAKABLE_BRICK(3);
+    BREAKABLE_BRICK(3),
+    DECORATIVE_TILE(4),
+    COIN(5);
 
     private final int value;
 

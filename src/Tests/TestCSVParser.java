@@ -1,5 +1,4 @@
 package Tests;
-import TileMapCreator.Tile;
 import TileMapCreator.TileMap;
 import TileMapCreator.CSVParser;
 
