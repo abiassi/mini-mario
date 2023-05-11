@@ -10,16 +10,8 @@ public class TestCSVParser {
         TileMap tileMap = CSVParser.parse("src/Tests/Resources/level1.csv");
 
         if (tileMap != null) {
-            int width = tileMap.getWidth();
-            int height = tileMap.getHeight();
-
-            for (int y = 0; y < height; y++) {
-                for (int x = 0; x < width; x++) {
-                    Tile tile = tileMap.getTile(x, y);
-                    System.out.print(tile.getType().getValue() + " ");
-                }
-                System.out.println();
-            }
+            tileMap.init();
+            tileMap.render();
         } else {
             System.out.println("Error parsing CSV file.");
         }
