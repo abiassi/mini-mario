@@ -20,7 +20,7 @@ public class MyKeyboard implements KeyboardHandler {
                 KeyboardEvent.KEY_W,
                 KeyboardEvent.KEY_D,
                 KeyboardEvent.KEY_S,
-              //  KeyboardEvent.KEY_SPACE
+                KeyboardEvent.KEY_SPACE
         };
 
         for(int i=0; i< keys.length; i++){
@@ -30,9 +30,12 @@ public class MyKeyboard implements KeyboardHandler {
             event.setKey(keys[i]);
             keyboard.addEventListener(event);
 
+
+            }
+
         }
 
-    }
+
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
@@ -49,6 +52,9 @@ public class MyKeyboard implements KeyboardHandler {
             case KeyboardEvent.KEY_S:
                 person.moveDown();
                 break;
+            case KeyboardEvent.KEY_SPACE:
+               // person.moveUp();
+               person.jump();
 
 
         }

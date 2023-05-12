@@ -1,3 +1,4 @@
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Person implements Collidable {
@@ -5,6 +6,8 @@ public class Person implements Collidable {
 
     ///Properties///
     private Picture picture;
+    // private CollisionDetector detector;
+    private Blocks blocks;
     private final int SPEED = 10;
     private boolean isJumping;
 
@@ -12,10 +15,14 @@ public class Person implements Collidable {
     private int maxJump; // picture.getY - picture.getHeight
 
     public Person(int x, int y, String resource) {
+
         picture = new Picture(x, y, resource);
         picture.draw();
-        this.maxJump = picture.getY() - picture.getHeight();
+        this.maxJump = 100;
+
     }
+
+
 
     public boolean isFalling() {
         return isFalling;
@@ -43,6 +50,7 @@ public class Person implements Collidable {
         picture.translate(SPEED, 0);
     }
 
+
     @Override
     public int getX() {
         return picture.getX();
@@ -67,9 +75,15 @@ public class Person implements Collidable {
         isJumping = true;
 
     }
+    public void stopFall(){
+        isFalling = false;
+    }
 
 
-//update jump method to call at the end of loop inside game start//
+public boolean personPos() {
+    return picture.getX() == 300;
+}
+    //update jump method to call at the end of loop inside game start//
 /* if isJumping
       translate ip;
    if persons y equals maxJump
@@ -79,17 +93,29 @@ public class Person implements Collidable {
    if persons y equals ground
        isFalling equals false
  */
-    public void update(){
-        if(isJumping){
+    public void update() {
+        while (isJumping) {
             moveUp();
-        }
-        if(picture.getY() == maxJump){
-            isFalling = true;
-        }
-        if(isFalling){
-            moveDown();
-        }
-        //still have to figure out how to calculate the ground (whether that be the actual floor or on an obstacle/platform
+            if (picture.getY() == maxJump) {
+                isFalling = true;
+                moveDown();
+                if (isFalling) {
+                    moveDown();
+                    //if (CollisionDetector.hasCollided(this, blocks)) {
+                       // System.out.println("has colided is being used");
+                       // isFalling = false;
+                        // }
 
+
+                        //}
+                        //}
+                    }
+                }
+            }
+        }
+
+
+        public void setBlocks (Blocks blocks){
+            this.blocks = blocks;
+        }
     }
-}
