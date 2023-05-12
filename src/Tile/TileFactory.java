@@ -1,4 +1,3 @@
-// TileFactory.java
 package Tile;
 
 public class TileFactory {
@@ -10,6 +9,7 @@ public class TileFactory {
             case BREAKABLE_BRICK -> new BreakableTile();
             case DECORATIVE_TILE -> new DecorativeTile();
             case COIN -> new CoinTile();
+            case END_TILE -> new EndTile();
             default -> throw new IllegalArgumentException("Unsupported tile type: " + type);
         };
     }
