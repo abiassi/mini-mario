@@ -6,7 +6,8 @@ public enum TileType {
     MYSTERY_BOX(2),
     BREAKABLE_BRICK(3),
     DECORATIVE_TILE(4),
-    COIN(5);
+    COIN(5),
+    END_TILE(6);
 
     private final int value;
 
