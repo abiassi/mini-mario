@@ -1,4 +1,3 @@
-// TileFactory.java
 package Tile;
 
 public class TileFactory {
