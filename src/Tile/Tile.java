@@ -1,4 +1,3 @@
-// Tile.java
 package Tile;
 
 public abstract class Tile {
