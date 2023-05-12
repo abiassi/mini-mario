@@ -22,4 +22,3 @@ public class EndTile extends Tile {
             throw new RuntimeException("Unable to load image for EndTile");
         }
     }
-}
