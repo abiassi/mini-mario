@@ -1,10 +1,14 @@
 package Tile;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+import utils.Collidable;
+import utils.CollisionDetector;
+import Character.Person;
 
 import java.net.URL;
 
 public class DecorativeTile extends Tile {
+    private Picture picture;
 
     public DecorativeTile() {
         super(TileType.DECORATIVE_TILE);
@@ -16,10 +20,17 @@ public class DecorativeTile extends Tile {
         URL imageUrl = getClass().getClassLoader().getResource("img/decorative_01.png");
         if (imageUrl != null) {
             String imagePath = imageUrl.getPath();
-            Picture picture = new Picture(x, y, imagePath);
+            picture = new Picture(x, y, imagePath);
             picture.draw();
         } else {
             throw new RuntimeException("Unable to load image for Decorative Tile");
         }
     }
+
+    @Override
+    public void onCollision(Person person, CollisionDetector.CollisionSide side) {
+        return;
+    }
+
+
 }
