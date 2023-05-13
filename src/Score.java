@@ -1,8 +1,14 @@
-public class Score {
-    private int score = 0;
+import org.academiadecodigo.simplegraphics.graphics.Text;
 
-    public Score(int score){
+public class Score {
+
+    private int score;
+    private Text text;
+
+    public Score(double x, double y, int score){
         this.score = score;
+        text = new Text(x, y, String.valueOf(score));
+        text.draw();
     }
 
     public int getScore() {
