@@ -37,16 +37,16 @@ public class BreakableTile extends Tile implements Collidable {
 
         switch (side) {
             case BOTTOM -> {
-                person.stopMovement(CollisionDetector.CollisionSide.BOTTOM);
+                person.stopMovement(CollisionDetector.CollisionSide.BOTTOM, this);
                 timesHit++;
                 if (timesHit >= 2) {
                     picture.delete();
                     isDestroyed = true;
                 }
             }
-            case TOP -> person.stopMovement(CollisionDetector.CollisionSide.TOP);
-            case LEFT -> person.stopMovement(CollisionDetector.CollisionSide.LEFT);
-            case RIGHT -> person.stopMovement(CollisionDetector.CollisionSide.RIGHT);
+            case TOP -> person.stopMovement(CollisionDetector.CollisionSide.TOP, this);
+            case LEFT -> person.stopMovement(CollisionDetector.CollisionSide.LEFT, this);
+            case RIGHT -> person.stopMovement(CollisionDetector.CollisionSide.RIGHT, this);
         }
     }
 

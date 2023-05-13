@@ -9,28 +9,31 @@ public class MyKeyboard implements KeyboardHandler {
     private Keyboard keyboard;
     private Person person;
 
-    public void setPerson(Person person){
+    public void setPerson(Person person) {
         this.person = person;
     }
 
-    public void init(){
+    public void init() {
         keyboard = new Keyboard(this);
 
         int[] keys = {
                 KeyboardEvent.KEY_A,
                 KeyboardEvent.KEY_W, //this is only for testing
                 KeyboardEvent.KEY_D,
-                KeyboardEvent.KEY_S,//this only for testing
                 KeyboardEvent.KEY_SPACE
         };
 
-        for(int i=0; i< keys.length; i++){
+        for (int i = 0; i < keys.length; i++) {
             System.out.println("key was pressed");
             KeyboardEvent event = new KeyboardEvent();
             event.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
             event.setKey(keys[i]);
             keyboard.addEventListener(event);
 
+            KeyboardEvent eventReleased = new KeyboardEvent();
+            eventReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+            eventReleased.setKey(keys[i]);
+            keyboard.addEventListener(eventReleased);
 
         }
 
@@ -40,7 +43,7 @@ public class MyKeyboard implements KeyboardHandler {
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
-        switch(keyboardEvent.getKey()){
+        switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_A:
                 person.moveLeft();
                 break;
@@ -50,13 +53,6 @@ public class MyKeyboard implements KeyboardHandler {
             case KeyboardEvent.KEY_D:
                 person.moveRight();
                 break;
-            case KeyboardEvent.KEY_S:
-                person.moveDown();
-                break;
-            case KeyboardEvent.KEY_SPACE:
-                // person.moveUp();
-                person.jump();
-
 
         }
 
@@ -64,6 +60,13 @@ public class MyKeyboard implements KeyboardHandler {
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
-
+        switch (keyboardEvent.getKey()) {
+            case KeyboardEvent.KEY_A:
+                person.stopHorizontal();
+                break;
+            case KeyboardEvent.KEY_D:
+                person.stopHorizontal();
+                break;
+        }
     }
 }

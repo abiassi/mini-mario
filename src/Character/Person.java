@@ -7,61 +7,54 @@ import Tile.Tile;
 import java.util.List;
 
 public class Person implements Collidable {
-
-
-    ///Properties///
     private Picture picture;
 
-    private final int SPEED = 10;
-    private boolean isJumping;
+    private int positionX;
+    private int positionY;
+    private double velocityX;
+    private double velocityY;
+    private boolean onGround;
 
-    private boolean isFalling;
-    private int maxJump; // picture.getY - picture.getHeight
+    private final double SPEED = 0.2;
+    private final float GRAVITY = 0.6f;
+    private final int JUMP_STRENGTH = 1;
+
 
     public Person(int x, int y, String resource) {
-
+        positionX = x;
+        positionY = y;
         picture = new Picture(x, y, resource);
         picture.draw();
-        this.maxJump = 100; //set to 100 just for testing as original cal didnt work
-
-    }
-
-
-    public boolean isFalling() {
-        return isFalling;
-    }
-
-    public boolean isJumping() {
-        return isJumping;
+        onGround = false;
     }
 
 
     public void moveUp() {
-        picture.translate(0, -SPEED);
+        System.out.println("MoveUp called, onGround: " + onGround);
+        if (onGround) {
+            velocityY = -5;
+            onGround = false;
+        }
     }
 
-    public void moveDown() {
-        picture.translate(0, SPEED);
-    }
+
 
     public void moveLeft() {
-        System.out.println("moving left in moveleft");
-        picture.translate(-SPEED, 0);
+        velocityX = -SPEED;
     }
 
     public void moveRight() {
-        picture.translate(SPEED, 0);
+        velocityX = SPEED;
     }
 
 
-    @Override
     public int getX() {
-        return picture.getX();
+        return positionX;
     }
 
     @Override
     public int getY() {
-        return picture.getY();
+        return positionY;
     }
 
     @Override
@@ -74,72 +67,88 @@ public class Person implements Collidable {
         return picture.getHeight();
     }
 
-    public void jump() {
-        isJumping = true;
-
-    }
-
-    public void stopFall() {
-        isFalling = false;
-    }
 
 
-    public boolean personPos() {
-        return picture.getX() == 300;
-    }
-
-    //update jump method to call at the end of loop inside game start//
-/* if isJumping
-      translate ip;
-   if persons y equals maxJump
-         isFalling equals true;
-   if isFalling
-       translate down
-   if persons y equals ground
-       isFalling equals false
- */
     public void update() {
-        if (isJumping) {
-            moveUp();
+        positionX += velocityX * 10;
+        positionY += velocityY * 2.5;
+
+        System.out.println("Position X: " + positionX + ", Position Y: " + positionY);
+        System.out.println("Velocity X: " + velocityX + ", Velocity Y: " + velocityY);
+
+        picture.translate(positionX - picture.getX(), positionY - picture.getY());
+
+        if (!onGround) {
+            applyGravity();
         }
-        if (picture.getY() == maxJump) {
-            isFalling = true;
-            moveDown();
-        }
-        //  if (isFalling) {
-        //    moveDown();
     }
+
+
+
+
+
+
+    private void applyGravity() {
+        if (!onGround) {
+            velocityY += GRAVITY * 0.1;
+        }
+    }
+
 
     public void checkCollisions(List<Collidable> collidableTiles) {
-        for (Collidable collidable : collidableTiles) {
-            // Checking for a collision and on which side
-            CollisionDetector.CollisionSide side = CollisionDetector.detectCollisionSide(this, collidable);
-            if(side != CollisionDetector.CollisionSide.NONE) {
-                ((Tile) collidable).onCollision(this, side);
+        for (Collidable tile : collidableTiles) {
+            CollisionDetector.CollisionSide side = CollisionDetector.detectCollisionSide(this, tile);
+            if (side != CollisionDetector.CollisionSide.NONE) {
+                stopMovement(side, tile);
+
+                if (side == CollisionDetector.CollisionSide.TOP) {
+                    onGround = true;
+                    System.out.println("Character on ground");
+                }
             }
         }
     }
 
-    public void stopMovement(CollisionDetector.CollisionSide side) {
+
+
+
+
+
+
+
+    public void stopMovement(CollisionDetector.CollisionSide side, Collidable collidable) {
         switch (side) {
             case TOP:
-                moveDown();
-                isFalling = false;
+                velocityY = 0;
+                positionY = collidable.getY() - getHeight();
+                System.out.println("(Top) Adjusting Position Y to: " + positionY);
                 break;
             case BOTTOM:
-                moveUp();
-                isJumping = false;
-                break;
+            //    velocityY = 0;
+              //  positionY = collidable.getY() + collidable.getHeight() + 5;
+               // System.out.println("(Bottom) Adjusting Position Y to: " + positionY);
+                // break;
             case LEFT:
-                this.moveRight();
-                break;
+                // velocityX = 0;
+                // positionX = collidable.getX() - getWidth();
+                // System.out.println("Adjusting Position X to: " + positionX);
+                // break;
             case RIGHT:
-                this.moveLeft();
-                break;
+                // velocityX = 0;
+                // positionX = collidable.getX() + collidable.getWidth();
+                // System.out.println("Adjusting Position X to: " + positionX);
+                // break;
             case NONE:
                 // No action needed
                 break;
         }
     }
+
+
+    public void stopHorizontal() {
+        velocityX = 0;
+    }
+
+
 
 }

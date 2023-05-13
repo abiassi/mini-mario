@@ -13,19 +13,22 @@ public class CollisionDetector {
             return CollisionSide.NONE;
         }
 
-        boolean left = c1.getX() + c1.getWidth() >= c2.getX();
-        boolean right = c1.getX() <= (c2.getX() + c2.getWidth());
-        boolean top = c1.getY() + c1.getHeight() >= c2.getY();
-        boolean bottom = c1.getY() <= c2.getY() + c2.getHeight();
+        double left = c2.getX() + c2.getWidth() - c1.getX();
+        double right = c1.getX() + c1.getWidth() - c2.getX();
+        double top = c2.getY() + c2.getHeight() - c1.getY();
+        double bottom = c1.getY() + c1.getHeight() - c2.getY();
 
-        if (left) return CollisionSide.LEFT;
-        if (right) return CollisionSide.RIGHT;
-        if (top) return CollisionSide.TOP;
-        if (bottom) return CollisionSide.BOTTOM;
+        double min = Math.min(Math.min(left, right), Math.min(top, bottom));
+
+        if (min == left) return CollisionSide.LEFT;
+        if (min == right) return CollisionSide.RIGHT;
+        if (min == top) return CollisionSide.TOP;
+        if (min == bottom) return CollisionSide.BOTTOM;
 
         // Fallback: if no side is determined, return none.
         return CollisionSide.NONE;
     }
+
 
     public static boolean hasCollided(Collidable c1, Collidable c2) {
         return (c1.getX() + c1.getWidth()) >= c2.getX() &&
