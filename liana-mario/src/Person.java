@@ -6,7 +6,7 @@ public class Person implements Collidable {
 
     ///Properties///
     private Picture picture;
-    // private CollisionDetector detector;
+
     private Blocks blocks;
     private final int SPEED = 10;
     private boolean isJumping;
@@ -18,7 +18,7 @@ public class Person implements Collidable {
 
         picture = new Picture(x, y, resource);
         picture.draw();
-        this.maxJump = 100;
+        this.maxJump = 100; //set to 100 just for testing as original cal didnt work
 
     }
 
@@ -94,13 +94,16 @@ public boolean personPos() {
        isFalling equals false
  */
     public void update() {
-        while (isJumping) {
+        if (isJumping) {
             moveUp();
+        }
             if (picture.getY() == maxJump) {
                 isFalling = true;
                 moveDown();
-                if (isFalling) {
-                    moveDown();
+            }
+              //  if (isFalling) {
+                //    moveDown();
+                }
                     //if (CollisionDetector.hasCollided(this, blocks)) {
                        // System.out.println("has colided is being used");
                        // isFalling = false;
@@ -109,10 +112,10 @@ public boolean personPos() {
 
                         //}
                         //}
-                    }
-                }
-            }
-        }
+                   // }
+
+
+
 
 
         public void setBlocks (Blocks blocks){

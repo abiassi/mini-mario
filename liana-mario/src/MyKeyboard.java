@@ -17,9 +17,9 @@ public class MyKeyboard implements KeyboardHandler {
 
         int[] keys = {
                 KeyboardEvent.KEY_A,
-                KeyboardEvent.KEY_W,
+                KeyboardEvent.KEY_W, //this is only for testing
                 KeyboardEvent.KEY_D,
-                KeyboardEvent.KEY_S,
+                KeyboardEvent.KEY_S,//this only for testing
                 KeyboardEvent.KEY_SPACE
         };
 
