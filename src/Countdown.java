@@ -1,37 +1,46 @@
+import org.academiadecodigo.simplegraphics.graphics.Text;
+
+import java.util.Timer;
 import java.util.*;
 
-    public class Countdown {
-        Timer timer;
-
-        public Countdown () {
-            timer = new Timer();
 
 
+public class Countdown {
 
-            TimerTask task = new TimerTask() {
+    Timer timer;
+    Text text;
+    private int seconds;
 
-                int seconds = 100;
+    TimerTask task;
 
-                @Override
-                public void run() {
-                    if(seconds > 0){
-                        System.out.println("Time: " + seconds);
-                        seconds--;
-                    }else{
-                        System.out.println("Time's up!");
-                        timer.cancel();
-                    }
+    public Countdown(double x, double y, int s) {
+        this.seconds = s;
+        timer = new Timer();
+        text = new Text(x, y, String.valueOf(seconds));
+        text.draw();
+
+        task = new TimerTask() {
+
+
+            @Override
+            public void run() {
+                if (seconds > 0) {
+                    text.setText(String.valueOf(seconds));
+                    text.draw();
+                    seconds--;
+                } else {
+                    System.out.println("Time's up!");
+                    timer.cancel();
                 }
-            };
-            timer.schedule(task, 0, 700);
-        }
-
-
-
+            }
+        };
 
 
     }
 
-
+    public void start() {
+        timer.schedule(task, 0, 700);
+    }
+}
 
 
