@@ -1,53 +1,37 @@
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Text;
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.*;
 
     public class Countdown {
-
-        //when game.init(), timer == 100 and decreases every x seconds
-
-        private Text timerText;
-        private double x, y;
-
         Timer timer;
 
-        String text;
-
-        int seconds = 100;
-
-        //public void paintShape(java.awt.Graphics2D g2)
+        public Countdown (int seconds) {
+            timer = new Timer();
 
 
-        //how do we make dynamic text show up every x seconds?
 
-        public Countdown(double x, double y, String text) {
-            this.x = x;
-            this.y = y;
-            this.text = text;
-            timerText = new Text(x, y, text);
-            timerText.setText("Time: " + seconds);
-            timerText.setColor(Color.BLACK);
-            timerText.draw();
-        }
-    }
+            TimerTask task = new TimerTask() {
 
-
-        //on Game, countdown() and timer.start();
-
-       /* public void countdown() {
-            timer = new Timer(800, new ActionListener() {
-
+                int seconds = 100;
 
                 @Override
-                public void actionPerformed(ActionEvent e) {
-                    //still working on it
+                public void run() {
+                    if(seconds > 0){
+                        System.out.println("Time: " + seconds);
+                        seconds--;
+                    }else{
+                        System.out.println("Time's up!");
+                        timer.cancel();
+                    }
                 }
-            }
+            };
+            timer.schedule(task, 0, 600);
         }
+
+
+
+
+
     }
-    */
+
 
 
 
