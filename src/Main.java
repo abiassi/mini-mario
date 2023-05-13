@@ -2,17 +2,10 @@ import TileMapCreator.CSVParser;
 import TileMapCreator.TileMap;
 
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello world! 123");
+    public static void main(String[] args) throws InterruptedException {
+        Game game = new Game(12);
+        game.init();
+        game.start();
 
-        /*
-            Code to test TileMap generation
-             */
-        TileMap tileMap = CSVParser.parse("src/Tests/Resources/level1.csv");
-
-        if (tileMap != null) {
-            tileMap.init();
-            tileMap.render();
-        }
     }
 }

@@ -1,11 +1,14 @@
 package Tile;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+import utils.Collidable;
+import utils.CollisionDetector;
+import Character.Person;
 
 import java.net.URL;
 
-public class EndTile extends Tile {
-
+public class EndTile extends Tile implements Collidable {
+    private Picture picture;
     public EndTile() {
         super(TileType.END_TILE);
     }
@@ -16,10 +19,35 @@ public class EndTile extends Tile {
         URL imageUrl = getClass().getClassLoader().getResource("img/end_01.png");
         if (imageUrl != null) {
             String imagePath = imageUrl.getPath();
-            Picture picture = new Picture(x, y, imagePath);
+            picture = new Picture(x, y, imagePath);
             picture.draw();
         } else {
             throw new RuntimeException("Unable to load image for EndTile");
         }
+    }
+
+    @Override
+    public void onCollision(Person person, CollisionDetector.CollisionSide side) {
+        // TODO: Add gameover method
+    }
+
+    @Override
+    public int getX() {
+        return picture.getX();
+    }
+
+    @Override
+    public int getY() {
+        return picture.getY();
+    }
+
+    @Override
+    public int getWidth() {
+        return picture.getWidth();
+    }
+
+    @Override
+    public int getHeight() {
+        return picture.getHeight();
     }
 }
