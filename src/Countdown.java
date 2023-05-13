@@ -3,7 +3,7 @@ import java.util.*;
     public class Countdown {
         Timer timer;
 
-        public Countdown (int seconds) {
+        public Countdown () {
             timer = new Timer();
 
 
@@ -23,7 +23,7 @@ import java.util.*;
                     }
                 }
             };
-            timer.schedule(task, 0, 600);
+            timer.schedule(task, 0, 700);
         }
 
 
