@@ -3,41 +3,34 @@ package Character;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import utils.Collidable;
 import utils.CollisionDetector;
-import Tile.Tile;
+
 import java.util.List;
 
+/**
+ * Person class representing a character in the game.
+ */
 public class Person implements Collidable {
-    private Picture picture;
-
+    private final Picture picture;
     private int positionX;
     private int positionY;
     private double velocityX;
     private double velocityY;
-    private boolean onGround;
+    private static final double SPEED = 5;
+    private static final float GRAVITY = 0.6f;
 
-    private final double SPEED = 0.2;
-    private final float GRAVITY = 0.6f;
-    private final int JUMP_STRENGTH = 1;
-
-
+    /**
+     * Constructor for Person class.
+     */
     public Person(int x, int y, String resource) {
         positionX = x;
         positionY = y;
         picture = new Picture(x, y, resource);
         picture.draw();
-        onGround = false;
     }
-
 
     public void moveUp() {
-        System.out.println("MoveUp called, onGround: " + onGround);
-        if (onGround) {
-            velocityY = -5;
-            onGround = false;
-        }
+        velocityY = -SPEED * 1.6;
     }
-
-
 
     public void moveLeft() {
         velocityX = -SPEED;
@@ -47,6 +40,9 @@ public class Person implements Collidable {
         velocityX = SPEED;
     }
 
+    public void stopHorizontal() {
+        velocityX = 0;
+    }
 
     public int getX() {
         return positionX;
@@ -67,88 +63,51 @@ public class Person implements Collidable {
         return picture.getHeight();
     }
 
+    /**
+     * Update method to handle character movement and collisions.
+     */
+    public void update(List<Collidable> collidableTiles) {
+        velocityY += GRAVITY;
+        positionY += velocityY;
+        handleVerticalCollisions(collidableTiles);
 
-
-    public void update() {
-        positionX += velocityX * 10;
-        positionY += velocityY * 2.5;
-
-        System.out.println("Position X: " + positionX + ", Position Y: " + positionY);
-        System.out.println("Velocity X: " + velocityX + ", Velocity Y: " + velocityY);
+        positionX += velocityX;
+        handleHorizontalCollisions(collidableTiles);
 
         picture.translate(positionX - picture.getX(), positionY - picture.getY());
-
-        if (!onGround) {
-            applyGravity();
-        }
     }
 
-
-
-
-
-
-    private void applyGravity() {
-        if (!onGround) {
-            velocityY += GRAVITY * 0.1;
-        }
-    }
-
-
-    public void checkCollisions(List<Collidable> collidableTiles) {
+    /**
+     * Handle vertical collisions with collidable tiles.
+     */
+    private void handleVerticalCollisions(List<Collidable> collidableTiles) {
         for (Collidable tile : collidableTiles) {
-            CollisionDetector.CollisionSide side = CollisionDetector.detectCollisionSide(this, tile);
-            if (side != CollisionDetector.CollisionSide.NONE) {
-                stopMovement(side, tile);
-
-                if (side == CollisionDetector.CollisionSide.TOP) {
-                    onGround = true;
-                    System.out.println("Character on ground");
+            if (CollisionDetector.hasCollided(this, tile)) {
+                if (velocityY > 0) {
+                    positionY = tile.getY() - getHeight();
+                    velocityY = 0;
+                } else if (velocityY < 0) {
+                    positionY = tile.getY() + tile.getHeight();
+                    velocityY = 0;
                 }
             }
         }
     }
 
-
-
-
-
-
-
-
-    public void stopMovement(CollisionDetector.CollisionSide side, Collidable collidable) {
-        switch (side) {
-            case TOP:
-                velocityY = 0;
-                positionY = collidable.getY() - getHeight();
-                System.out.println("(Top) Adjusting Position Y to: " + positionY);
-                break;
-            case BOTTOM:
-            //    velocityY = 0;
-              //  positionY = collidable.getY() + collidable.getHeight() + 5;
-               // System.out.println("(Bottom) Adjusting Position Y to: " + positionY);
-                // break;
-            case LEFT:
-                // velocityX = 0;
-                // positionX = collidable.getX() - getWidth();
-                // System.out.println("Adjusting Position X to: " + positionX);
-                // break;
-            case RIGHT:
-                // velocityX = 0;
-                // positionX = collidable.getX() + collidable.getWidth();
-                // System.out.println("Adjusting Position X to: " + positionX);
-                // break;
-            case NONE:
-                // No action needed
-                break;
+    /**
+     * Handle horizontal collisions with collidable tiles.
+     */
+    private void handleHorizontalCollisions(List<Collidable> collidableTiles) {
+        for (Collidable tile : collidableTiles) {
+            if (CollisionDetector.hasCollided(this, tile)) {
+                if (velocityX > 0) {
+                    positionX = tile.getX() - getWidth();
+                    velocityX = 0;
+                } else if (velocityX < 0) {
+                    positionX = tile.getX() + tile.getWidth();
+                    velocityX = 0;
+                }
+            }
         }
     }
-
-
-    public void stopHorizontal() {
-        velocityX = 0;
-    }
-
-
-
 }

@@ -40,8 +40,8 @@ public class Game {
         // Runs loop that updates all parts
         while (true) {
             Thread.sleep(delay);
-            person.update();
-            person.checkCollisions(collidableTiles);
+            person.update(collidableTiles);
+            //person.checkCollisions(collidableTiles);
         }
     }
 }

@@ -17,7 +17,7 @@ public abstract class Tile {
     // Add an abstract method for rendering the tile
     public abstract void render(int x, int y, int cellSize);
     public void onCollision(Person person, CollisionDetector.CollisionSide side) {
-        person.stopMovement(side, (Collidable) this);
+       // person.stopMovement(side, (Collidable) this);
     }
 
 }
