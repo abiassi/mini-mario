@@ -1,7 +1,6 @@
 package Tile;
-import Character.Person;
-import utils.Collidable;
-import utils.CollisionDetector;
+
+import GameCharacter.GameCharacter;
 
 public abstract class Tile {
     private TileType type;
@@ -16,7 +15,7 @@ public abstract class Tile {
 
     // Add an abstract method for rendering the tile
     public abstract void render(int x, int y, int cellSize);
-    public void onCollision(Person person) {
+    public void onCollision(GameCharacter person) {
        // person.stopMovement(side, (Collidable) this);
     }
 

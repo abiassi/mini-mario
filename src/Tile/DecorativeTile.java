@@ -1,9 +1,8 @@
 package Tile;
 
+import GameCharacter.GameCharacter;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-import utils.Collidable;
-import utils.CollisionDetector;
-import Character.Person;
+import GameCharacter.Person;
 
 import java.net.URL;
 
@@ -28,9 +27,8 @@ public class DecorativeTile extends Tile {
     }
 
     @Override
-    public void onCollision(Person person) {
+    public void onCollision(GameCharacter person) {
         return; // No special behavior
     }
-
 
 }
