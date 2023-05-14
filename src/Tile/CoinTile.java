@@ -1,13 +1,13 @@
 package Tile;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+import utils.Collectible;
 import utils.Collidable;
-import utils.CollisionDetector;
 import Character.Person;
 
 import java.net.URL;
 
-public class CoinTile extends Tile implements Collidable {
+public class CoinTile extends Tile implements Collidable, Collectible {
     private Picture picture;
     private boolean collected;
 
@@ -17,7 +17,6 @@ public class CoinTile extends Tile implements Collidable {
 
     @Override
     public void render(int x, int y, int cellSize) {
-        // Render solid tile
         URL imageUrl = getClass().getClassLoader().getResource("img/coin_01.png");
         if (imageUrl != null) {
             String imagePath = imageUrl.getPath();
@@ -28,7 +27,7 @@ public class CoinTile extends Tile implements Collidable {
         }
     }
 
-    public void onCollision(Person person, CollisionDetector.CollisionSide side) {
+    public void onCollision(Person person) {
         if (collected) {
             return;
         }
@@ -57,4 +56,8 @@ public class CoinTile extends Tile implements Collidable {
         return picture.getHeight();
     }
 
+    @Override
+    public boolean isCollected() {
+        return collected;
+    }
 }

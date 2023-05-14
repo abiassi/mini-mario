@@ -28,8 +28,8 @@ public class DecorativeTile extends Tile {
     }
 
     @Override
-    public void onCollision(Person person, CollisionDetector.CollisionSide side) {
-        return;
+    public void onCollision(Person person) {
+        return; // No special behavior
     }
 
 

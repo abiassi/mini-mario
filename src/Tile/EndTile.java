@@ -27,7 +27,7 @@ public class EndTile extends Tile implements Collidable {
     }
 
     @Override
-    public void onCollision(Person person, CollisionDetector.CollisionSide side) {
+    public void onCollision(Person person) {
         // TODO: Add gameover method
     }
 

@@ -28,16 +28,8 @@ public class SolidTile extends Tile implements Collidable {
     }
 
     @Override
-    public void onCollision(Person person, CollisionDetector.CollisionSide side) {
-        /*
-        switch (side) {
-            case BOTTOM -> person.stopMovement(CollisionDetector.CollisionSide.BOTTOM, this);
-            case TOP -> person.stopMovement(CollisionDetector.CollisionSide.TOP, this);
-            case LEFT -> person.stopMovement(CollisionDetector.CollisionSide.LEFT, this);
-            case RIGHT -> person.stopMovement(CollisionDetector.CollisionSide.RIGHT, this);
-        }
-
-         */
+    public void onCollision(Person person) {
+        return; // No special behavior
     }
 
 

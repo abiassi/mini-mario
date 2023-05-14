@@ -4,10 +4,6 @@ import utils.Collidable;
 
 public class CollisionDetector {
 
-    public enum CollisionSide {
-        NONE, LEFT, RIGHT, TOP, BOTTOM
-    }
-
     public static boolean hasCollided(Collidable c1, Collidable c2) {
         return (c1.getX() + c1.getWidth()) >= (c2.getX()+1) &&
                 c1.getX() <= (c2.getX() + c2.getWidth()-1) &&

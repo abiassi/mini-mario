@@ -29,24 +29,8 @@ public class MysteryBoxTile extends Tile implements Collidable {
     }
 
     @Override
-    public void onCollision(Person person, CollisionDetector.CollisionSide side) {
-        /*
-        if (isDestroyed) {
-            return;
-        }
-
-        switch (side) {
-            case BOTTOM -> {
-                person.stopMovement(CollisionDetector.CollisionSide.BOTTOM, this);
-                isDestroyed = true;
-                // TODO: Add random method that offers an item (Mushroom, coin, star)
-            }
-            case TOP -> person.stopMovement(CollisionDetector.CollisionSide.TOP, this);
-            case LEFT -> person.stopMovement(CollisionDetector.CollisionSide.LEFT, this);
-            case RIGHT -> person.stopMovement(CollisionDetector.CollisionSide.RIGHT, this);
-        }
-
-         */
+    public void onCollision(Person person) {
+        return; // TODO: add interaction that adds a coin tile to the above this box
     }
 
     @Override
