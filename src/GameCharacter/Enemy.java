@@ -17,6 +17,7 @@ public class Enemy extends GameCharacter implements Collidable {
      */
     public Enemy(int x, int y) {
         super(x, y, "/img/goomba_01.png");
+        onGround = true;
         initialX = x;
         lastUpdate = System.currentTimeMillis();
         Random random = new Random();
