@@ -1,9 +1,6 @@
 package Tile;
 
-import GameCharacter.GameCharacter;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-import GameCharacter.Person;
-
 import java.net.URL;
 
 public class DecorativeTile extends Tile {
@@ -14,7 +11,7 @@ public class DecorativeTile extends Tile {
     }
 
     @Override // No decorative tile ex
-    public void render(int x, int y, int cellSize) {
+    public void render(int x, int y) {
         // Render solid tile
         URL imageUrl = getClass().getClassLoader().getResource("img/decorative_01.png");
         if (imageUrl != null) {
@@ -26,9 +23,5 @@ public class DecorativeTile extends Tile {
         }
     }
 
-    @Override
-    public void onCollision(GameCharacter person) {
-        return; // No special behavior
-    }
 
 }

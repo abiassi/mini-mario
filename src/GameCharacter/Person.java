@@ -1,10 +1,12 @@
 package GameCharacter;
 
-import org.academiadecodigo.simplegraphics.pictures.Picture;
+import Tile.CoinTile;
+import Tile.MysteryBoxTile;
 import utils.Collectible;
 import utils.Collidable;
 import utils.CollisionDetector;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,9 +42,17 @@ public class Person extends GameCharacter implements Collidable {
      */
 
     protected void handleVerticalCollisions(List<Collidable> collidableTiles) {
+        List<Collidable> newTiles = new ArrayList<>();
         for (Collidable tile : collidableTiles) {
             if (CollisionDetector.hasCollided(this, tile) && !handleCollectible(tile)) {
-                tile.onCollision(this);
+                if(tile instanceof MysteryBoxTile) {
+                    CoinTile coinTile = ((MysteryBoxTile) tile).onCollisionMysteryBox(this);
+                    if (coinTile != null) {
+                        newTiles.add(coinTile);
+                    }
+                } else {
+                    tile.onCollision(this);
+                }
                 if (velocityY > 0) {
                     positionY = tile.getY() - getHeight();
                     velocityY = 0;
@@ -52,13 +62,22 @@ public class Person extends GameCharacter implements Collidable {
                 }
             }
         }
+        collidableTiles.addAll(newTiles);
     }
 
 
     protected void handleHorizontalCollisions(List<Collidable> collidableTiles) {
+        List<Collidable> newTiles = new ArrayList<>();
         for (Collidable tile : collidableTiles) {
             if (CollisionDetector.hasCollided(this, tile) && !handleCollectible(tile)) {
-                tile.onCollision(this);
+                if(tile instanceof MysteryBoxTile) {
+                    CoinTile coinTile = ((MysteryBoxTile) tile).onCollisionMysteryBox(this);
+                    if (coinTile != null) {
+                        newTiles.add(coinTile);
+                    }
+                } else {
+                    tile.onCollision(this);
+                }
                 if (velocityX > 0) {
                     positionX = tile.getX() - getWidth();
                     velocityX = 0;
@@ -68,6 +87,7 @@ public class Person extends GameCharacter implements Collidable {
                 }
             }
         }
+        collidableTiles.addAll(newTiles);
     }
 
 

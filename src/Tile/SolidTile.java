@@ -14,7 +14,7 @@ public class SolidTile extends Tile implements Collidable {
     }
 
     @Override
-    public void render(int x, int y, int cellSize) {
+    public void render(int x, int y) {
         // Render solid tile
         URL imageUrl = getClass().getClassLoader().getResource("img/brick_floor_01.png");
         if (imageUrl != null) {

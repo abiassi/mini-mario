@@ -13,7 +13,7 @@ public class EndTile extends Tile implements Collidable {
     }
 
     @Override
-    public void render(int x, int y, int cellSize) {
+    public void render(int x, int y) {
         // Render solid tile
         URL imageUrl = getClass().getClassLoader().getResource("img/end_01.png");
         if (imageUrl != null) {
@@ -29,6 +29,7 @@ public class EndTile extends Tile implements Collidable {
     public void onCollision(GameCharacter person) {
         // TODO: Add gameover method
     }
+
 
     @Override
     public int getX() {
