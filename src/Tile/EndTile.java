@@ -1,7 +1,6 @@
 package Tile;
 
-import GameCharacter.GameCharacter;
-import GameCharacter.Person;
+import GameCharacter.*;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import utils.Collidable;
 

@@ -1,3 +1,6 @@
+import ScoringSystem.CoinScore;
+import ScoringSystem.Countdown;
+import ScoringSystem.Score;
 import GameCharacter.Enemy;
 import Tile.*;
 import TileMapCreator.CSVParser;
@@ -12,6 +15,10 @@ import java.util.List;
 public class Game {
     private final int delay;
     private Person person;
+    private Score score;
+    private CoinScore coinScore;
+    private Countdown countdown;
+
     private List<Enemy> enemies;
     private List<Collidable> collidableTiles;
     private boolean GameOver;
@@ -40,6 +47,16 @@ public class Game {
 
         // Create Character.Person
         person = new Person(50, 180, "img/mario_01.png");
+
+        //Create Score
+        score = new Score(60, 50, 0);
+
+        //Create CoinScore
+        coinScore = new CoinScore(250, 50,0, "img/coin_01.png");
+
+        //Create Countdown
+        countdown = new Countdown(400, 50, 10);
+        countdown.start();
 
         // Create Keyboard handlers
         MyKeyboard myKeyboard = new MyKeyboard();
@@ -80,7 +97,6 @@ public class Game {
             GameOver = true;
         }
     }
-
 
 
 

@@ -1,5 +1,6 @@
 package GameCharacter;
 
+import ScoringSystem.CoinScore;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import utils.Collidable;
 import utils.CollisionDetector;

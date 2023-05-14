@@ -1,6 +1,6 @@
 package Tile;
 
-import GameCharacter.GameCharacter;
+import GameCharacter.*;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import utils.Collidable;
 import utils.CollisionUtil;

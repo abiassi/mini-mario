@@ -1,5 +1,7 @@
 package Tile;
 
+import ScoringSystem.CoinScore;
+
 public class TileFactory {
     public static Tile createTile(TileType type) {
         return switch (type) {

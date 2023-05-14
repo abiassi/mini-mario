@@ -1,9 +1,11 @@
 package Tile;
 
-import GameCharacter.GameCharacter;
+import ScoringSystem.CoinScore;
+import ScoringSystem.Score;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import utils.Collectible;
 import utils.Collidable;
+import GameCharacter.*;
 
 import java.net.URL;
 
@@ -33,7 +35,8 @@ public class CoinTile extends Tile implements Collidable, Collectible {
         }
         picture.delete();
         collected = true;
-        // TODO: Add increment coin score action
+        CoinScore.increaseCoins();
+        Score.increaseScore();
     }
 
     @Override

@@ -1,6 +1,6 @@
 package utils;
 
-import GameCharacter.GameCharacter;
+import GameCharacter.*;
 
 public class CollisionUtil {
     public static boolean isHitFromBelow(GameCharacter person, Collidable tile) {
