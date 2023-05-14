@@ -2,8 +2,8 @@ package Tile;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import utils.Collidable;
-import utils.CollisionDetector;
 import Character.Person;
+import utils.CollisionUtil;
 
 import java.net.URL;
 
@@ -18,7 +18,6 @@ public class BreakableTile extends Tile implements Collidable {
 
     @Override
     public void render(int x, int y, int cellSize) {
-        // Render solid tile
         URL imageUrl = getClass().getClassLoader().getResource("img/brick_breakable_01.png");
         if (imageUrl != null) {
             String imagePath = imageUrl.getPath();
@@ -30,27 +29,20 @@ public class BreakableTile extends Tile implements Collidable {
     }
 
     @Override
-    public void onCollision(Person person, CollisionDetector.CollisionSide side) {
-        /*
-        if (isDestroyed) {
-            return;
-        }
+    public void onCollision(Person person) {
+        if (CollisionUtil.isHitFromBelow(person, this)) {
+            timesHit++;
 
-        switch (side) {
-            case BOTTOM -> {
-                person.stopMovement(CollisionDetector.CollisionSide.BOTTOM, this);
-                timesHit++;
-                if (timesHit >= 2) {
-                    picture.delete();
-                    isDestroyed = true;
-                }
+            if (timesHit >= 2) {
+                isDestroyed = true;
+                picture.delete();
             }
-            case TOP -> person.stopMovement(CollisionDetector.CollisionSide.TOP, this);
-            case LEFT -> person.stopMovement(CollisionDetector.CollisionSide.LEFT, this);
-            case RIGHT -> person.stopMovement(CollisionDetector.CollisionSide.RIGHT, this);
         }
+    }
 
-         */
+
+    public boolean isDestroyed() {
+        return isDestroyed;
     }
 
     @Override

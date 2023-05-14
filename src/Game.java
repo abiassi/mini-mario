@@ -1,5 +1,7 @@
+import Tile.*;
 import TileMapCreator.CSVParser;
 import TileMapCreator.TileMap;
+import utils.Collectible;
 import utils.Collidable;
 import Character.Person;
 
@@ -9,8 +11,6 @@ public class Game {
     private static final String PREFIX = "resources/";
     private final int delay;
     private Person person;
-    //public int centerX= 300;
-    // private int score = 0;
     private List<Collidable> collidableTiles;
 
     public Game(int delay) { //incomplete
@@ -41,14 +41,11 @@ public class Game {
         while (true) {
             Thread.sleep(delay);
             person.update(collidableTiles);
-            //person.checkCollisions(collidableTiles);
+            collidableTiles.removeIf(collidable -> collidable instanceof Collectible && ((Collectible) collidable).isCollected());
+            collidableTiles.removeIf(collidable -> collidable instanceof BreakableTile && ((BreakableTile) collidable).isDestroyed());
         }
     }
+
+
+
 }
-
-    /*
-
-                    if (utils.CollisionDetector.hasCollided(person, blocks[i])) { // Abi: Substitute for Tiles
-                    System.out.println("colliding with block");
-                    person.stopFall();
-     */
