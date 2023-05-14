@@ -1,15 +1,17 @@
 <?xml version="1.0" ?>
 <project name="Mini-Mario" default="jarfile">
 
+
+
     <!-- Initialize build properties  -->
     <target name="init">
-        <property name="project.name" value="Mini-Mario" />
+        <property name="project.name" value="MiniMario" />
         <property name="src.dir" value="src" />
         <property name="main.class" value="Main" />
         <property name="build.dir" value="build" />
         <property name="classes.dir" value="${build.dir}/classes" />
         <property name="resources.dir" value="src/Resources"/>
-        <property name="lib.dir" value="src/lib" />
+        <property name="lib.dir" value="lib" />
         <path id="classpath">
             <fileset dir="${lib.dir}" includes="**/*.jar" />
         </path>
@@ -39,7 +41,7 @@
                 <attribute name="Main-Class" value="${main.class}" />
                 <attribute name="Class-Path" value="${lib.dir}" />
             </manifest>
-            <zipgroupfileset dir="${lib.dir}" includes="*.jar"/>
+            <zipgroupfileset dir="${lib.dir}"/>
             <fileset dir="${resources.dir}"/>
         </jar>
     </target>

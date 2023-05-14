@@ -5,7 +5,6 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 import utils.Collidable;
 import utils.CollisionUtil;
 
-import java.net.URL;
 
 public class BreakableTile extends Tile implements Collidable {
     private int timesHit;
@@ -18,14 +17,8 @@ public class BreakableTile extends Tile implements Collidable {
 
     @Override
     public void render(int x, int y) {
-        URL imageUrl = getClass().getClassLoader().getResource("Resources/brick_breakable_01.png");
-        if (imageUrl != null) {
-            String imagePath = imageUrl.getPath();
-            picture = new Picture(x, y, imagePath);
+            picture = new Picture(x, y, "src/Resources/brick_breakable_01.png");
             picture.draw();
-        } else {
-            throw new RuntimeException("Unable to load image for BreakableTile");
-        }
     }
 
     @Override

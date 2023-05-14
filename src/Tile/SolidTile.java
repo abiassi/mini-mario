@@ -4,7 +4,6 @@ import GameCharacter.GameCharacter;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import utils.Collidable;
 
-import java.net.URL;
 
 public class SolidTile extends Tile implements Collidable {
     private Picture picture;
@@ -15,15 +14,9 @@ public class SolidTile extends Tile implements Collidable {
 
     @Override
     public void render(int x, int y) {
-        // Render solid tile
-        URL imageUrl = getClass().getClassLoader().getResource("Resources/brick_floor_01.png");
-        if (imageUrl != null) {
-            String imagePath = imageUrl.getPath();
-            picture = new Picture(x, y, imagePath);
+            picture = new Picture(x, y, "src/Resources/brick_floor_01.png");
             picture.draw();
-        } else {
-            throw new RuntimeException("Unable to load image for SolidTile");
-        }
+
     }
 
     @Override

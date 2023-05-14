@@ -7,8 +7,6 @@ import utils.Collectible;
 import utils.Collidable;
 import GameCharacter.*;
 
-import java.net.URL;
-
 public class CoinTile extends Tile implements Collidable, Collectible {
     private Picture picture;
     private boolean collected;
@@ -19,14 +17,8 @@ public class CoinTile extends Tile implements Collidable, Collectible {
 
     @Override
     public void render(int x, int y) {
-        URL imageUrl = getClass().getClassLoader().getResource("Resources/coin_01.png");
-        if (imageUrl != null) {
-            String imagePath = imageUrl.getPath();
-            picture = new Picture(x, y, imagePath);
+            picture = new Picture(x, y, "src/Resources/coin_01.png");
             picture.draw();
-        } else {
-            throw new RuntimeException("Unable to load image for CoinTile");
-        }
     }
 
     public void onCollision(GameCharacter person) {
