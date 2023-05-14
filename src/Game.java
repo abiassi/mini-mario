@@ -3,7 +3,7 @@ import TileMapCreator.CSVParser;
 import TileMapCreator.TileMap;
 import utils.Collectible;
 import utils.Collidable;
-import Character.Person;
+import GameCharacter.Person;
 
 import java.util.List;
 
@@ -16,6 +16,8 @@ public class Game {
     public Game(int delay) { //incomplete
         this.delay = delay;
     }
+
+
 
 
     public void init() {

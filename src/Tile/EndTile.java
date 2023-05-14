@@ -1,9 +1,8 @@
 package Tile;
 
+import GameCharacter.GameCharacter;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import utils.Collidable;
-import utils.CollisionDetector;
-import Character.Person;
 
 import java.net.URL;
 
@@ -27,7 +26,7 @@ public class EndTile extends Tile implements Collidable {
     }
 
     @Override
-    public void onCollision(Person person) {
+    public void onCollision(GameCharacter person) {
         // TODO: Add gameover method
     }
 

@@ -1,28 +1,21 @@
-package Character;
+package GameCharacter;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-import utils.Collectible;
 import utils.Collidable;
 import utils.CollisionDetector;
 
 import java.util.List;
 
-/**
- * Person class representing a character in the game.
- */
-public class Person implements Collidable {
-    private final Picture picture;
-    private int positionX;
-    private int positionY;
-    private double velocityX;
-    private double velocityY;
-    private static final double SPEED = 3;
-    private static final float GRAVITY = 0.6f;
+public abstract class GameCharacter implements Collidable {
+    protected Picture picture;
+    protected int positionX;
+    protected int positionY;
+    protected double velocityX;
+    protected double velocityY;
+    protected static final double SPEED = 3;
+    protected static final float GRAVITY = 0.6f;
 
-    /**
-     * Constructor for Person class.
-     */
-    public Person(int x, int y, String resource) {
+    public GameCharacter(int x, int y, String resource) {
         positionX = x;
         positionY = y;
         picture = new Picture(x, y, resource);
@@ -30,7 +23,7 @@ public class Person implements Collidable {
     }
 
     public void moveUp() {
-        velocityY = -SPEED * 3;
+        velocityY += -SPEED * 3;
     }
 
     public void moveLeft() {
@@ -88,13 +81,9 @@ public class Person implements Collidable {
     /**
      * Handle vertical collisions with collidable tiles.
      */
-
-    /**
-     * Handle horizontal collisions with collidable tiles.
-     */
-    private void handleVerticalCollisions(List<Collidable> collidableTiles) {
+    protected void handleVerticalCollisions(List<Collidable> collidableTiles) {
         for (Collidable tile : collidableTiles) {
-            if (CollisionDetector.hasCollided(this, tile) && !handleCollectible(tile)) {
+            if (CollisionDetector.hasCollided(this, tile)) {
                 tile.onCollision(this);
                 if (velocityY > 0) {
                     positionY = tile.getY() - getHeight();
@@ -107,9 +96,12 @@ public class Person implements Collidable {
         }
     }
 
-    private void handleHorizontalCollisions(List<Collidable> collidableTiles) {
+    /**
+     * Handle horizontal collisions with collidable tiles.
+     */
+    protected void handleHorizontalCollisions(List<Collidable> collidableTiles) {
         for (Collidable tile : collidableTiles) {
-            if (CollisionDetector.hasCollided(this, tile) && !handleCollectible(tile)) {
+            if (CollisionDetector.hasCollided(this, tile)) {
                 tile.onCollision(this);
                 if (velocityX > 0) {
                     positionX = tile.getX() - getWidth();
@@ -121,22 +113,4 @@ public class Person implements Collidable {
             }
         }
     }
-
-
-    private boolean handleCollectible(Collidable tile) {
-        if (tile instanceof Collectible) {
-            tile.onCollision(this);
-            return true;
-        }
-        return false;
-    }
-
-
-
-    @Override
-    public void onCollision(Person person) {
-        // Intentionally left empty as Person does not have any specific behavior when colliding with other objects
-    }
-
-
 }

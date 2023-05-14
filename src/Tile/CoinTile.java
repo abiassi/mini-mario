@@ -1,9 +1,9 @@
 package Tile;
 
+import GameCharacter.GameCharacter;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import utils.Collectible;
 import utils.Collidable;
-import Character.Person;
 
 import java.net.URL;
 
@@ -27,7 +27,7 @@ public class CoinTile extends Tile implements Collidable, Collectible {
         }
     }
 
-    public void onCollision(Person person) {
+    public void onCollision(GameCharacter person) {
         if (collected) {
             return;
         }

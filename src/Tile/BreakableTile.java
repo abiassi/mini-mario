@@ -1,8 +1,8 @@
 package Tile;
 
+import GameCharacter.GameCharacter;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import utils.Collidable;
-import Character.Person;
 import utils.CollisionUtil;
 
 import java.net.URL;
@@ -29,7 +29,7 @@ public class BreakableTile extends Tile implements Collidable {
     }
 
     @Override
-    public void onCollision(Person person) {
+    public void onCollision(GameCharacter person) {
         if (CollisionUtil.isHitFromBelow(person, this)) {
             timesHit++;
 
