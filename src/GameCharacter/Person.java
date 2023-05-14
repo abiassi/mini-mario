@@ -19,6 +19,20 @@ public class Person extends GameCharacter implements Collidable {
         super(x, y, resource);
     }
 
+    public void update(List<Collidable> collidableTiles, List<Enemy> enemies) {
+        velocityY += GRAVITY;
+        positionY += velocityY;
+        handleVerticalCollisions(collidableTiles);
+        handleEnemyCollisions(enemies);
+
+        positionX += velocityX;
+        handleHorizontalCollisions(collidableTiles);
+        handleEnemyCollisions(enemies);
+
+        picture.translate(positionX - picture.getX(), positionY - picture.getY());
+    }
+
+
 
 
     /**
@@ -63,6 +77,14 @@ public class Person extends GameCharacter implements Collidable {
             return true;
         }
         return false;
+    }
+
+    private void handleEnemyCollisions(List<Enemy> enemies) {
+        for (Enemy enemy : enemies) {
+            if (CollisionDetector.hasCollided(this, enemy)) {
+                enemy.onCollision(this);
+            }
+        }
     }
 
 

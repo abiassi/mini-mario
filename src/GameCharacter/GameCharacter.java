@@ -14,6 +14,8 @@ public abstract class GameCharacter implements Collidable {
     protected double velocityY;
     protected static final double SPEED = 3;
     protected static final float GRAVITY = 0.6f;
+    protected boolean dead;
+
 
     public GameCharacter(int x, int y, String resource) {
         positionX = x;
@@ -112,5 +114,14 @@ public abstract class GameCharacter implements Collidable {
                 }
             }
         }
+    }
+
+    public void die() {
+        picture.delete();
+        dead = true;
+    }
+
+    public boolean isDead() {
+        return dead;
     }
 }
