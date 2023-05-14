@@ -55,7 +55,7 @@ public class Game {
         coinScore = new CoinScore(250, 50,0, "img/coin_01.png");
 
         //Create Countdown
-        countdown = new Countdown(400, 50, 10);
+        countdown = new Countdown(400, 50, 120);
         countdown.start();
 
         // Create Keyboard handlers
