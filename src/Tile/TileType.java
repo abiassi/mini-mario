@@ -7,7 +7,8 @@ public enum TileType {
     BREAKABLE_BRICK(3),
     DECORATIVE_TILE(4),
     COIN(5),
-    END_TILE(6);
+    END_TILE(6),
+    LIMIT(9);
 
     private final int value;
 

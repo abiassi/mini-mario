@@ -14,6 +14,7 @@ public class Game {
     private Person person;
     private List<Enemy> enemies;
     private List<Collidable> collidableTiles;
+    private boolean GameOver;
 
     public Game(int delay) {
         this.delay = delay;
@@ -24,7 +25,7 @@ public class Game {
 
     public void init() {
         // Parse CSV and render tilemap
-        TileMap tileMap = CSVParser.parse("src/Tests/Resources/level1.csv");
+        TileMap tileMap = CSVParser.parse("src/Tests/Resources/level-1-v2.csv");
         if (tileMap != null) {
             tileMap.init();
             tileMap.render();
@@ -38,7 +39,7 @@ public class Game {
 
 
         // Create Character.Person
-        person = new Person(30, 180, "img/mario_01.png");
+        person = new Person(50, 180, "img/mario_01.png");
 
         // Create Keyboard handlers
         MyKeyboard myKeyboard = new MyKeyboard();
@@ -48,12 +49,13 @@ public class Game {
 
     public void start() throws InterruptedException {
         // Runs loop that updates all parts
-        while (true) {
+        while (!GameOver) {
             Thread.sleep(delay);
             person.update(collidableTiles, enemies);
             handleCollidableRemovals();
             updateEnemies();
             removeDeadEnemies();
+            checkGameOver();
         }
     }
 
@@ -72,6 +74,13 @@ public class Game {
         collidableTiles.removeIf(collidable -> collidable instanceof BreakableTile && ((BreakableTile) collidable).isDestroyed());
         collidableTiles.removeIf(collidable -> collidable instanceof MysteryBoxTile && ((MysteryBoxTile) collidable).isDestroyed());
     }
+
+    private void checkGameOver() {
+        if (person.isDead() || person.hasFinishedLevel()) {
+            GameOver = true;
+        }
+    }
+
 
 
 
