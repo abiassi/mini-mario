@@ -13,8 +13,17 @@ public class CoinScore {
         text.draw();
     }
 
-    public int getCoins() {
+    public int getCoinScore() {
         return coins;
+    }
+
+    public void increaseCoins(){
+        updateCoinsDisplay();
+        coins++;
+    }
+
+    public void updateCoinsDisplay() {
+        text.setText(String.valueOf(coins));
     }
 
 

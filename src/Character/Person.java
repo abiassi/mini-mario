@@ -1,5 +1,6 @@
 package Character;
 
+import ScoringSystem.CoinScore;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import utils.Collectible;
 import utils.Collidable;
@@ -18,6 +19,8 @@ public class Person implements Collidable {
     private double velocityY;
     private static final double SPEED = 3;
     private static final float GRAVITY = 0.6f;
+
+    private CoinScore coinscore;
 
     /**
      * Constructor for Person class.

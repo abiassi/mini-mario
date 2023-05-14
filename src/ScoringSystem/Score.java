@@ -18,10 +18,16 @@ public class Score {
     }
 
     //if coin is collided or if enemy is killed
-    public int collect(){
+    public int increaseScore(){
+        updateScoreDisplay();
         return score + 100;
     }
 
+
+    public void updateScoreDisplay() {
+        text.setText(String.valueOf(score));
+    }
+/*
     //if player dies before concluding level, return to initial score
     public boolean playerDead(){
         return score == 0;
@@ -32,7 +38,7 @@ public class Score {
         return score + 400;
     }
 
-
+*/
 
 
 
