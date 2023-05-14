@@ -9,7 +9,8 @@ public class Score {
 
     public Score(double x, double y, int score){
         this.score = score;
-        text = new Text(x, y, String.valueOf(score));
+        text = new Text(x, y, "SCORE: " + String.valueOf(score));
+        text.setColor(org.academiadecodigo.simplegraphics.graphics.Color.WHITE);
         text.draw();
     }
 
@@ -25,20 +26,17 @@ public class Score {
 
 
     public static void updateScoreDisplay() {
-        text.setText(String.valueOf(score));
+        text.setText("SCORE: " + String.valueOf(score));
     }
-/*
-    //if player dies before concluding level, return to initial score
+
     public boolean playerDead(){
         return score == 0;
     }
 
-    //if player concludes level, increase score by 400
     public int levelConcluded(){
-        return score + 400;
+        return score += 400;
     }
 
-*/
 
 
 

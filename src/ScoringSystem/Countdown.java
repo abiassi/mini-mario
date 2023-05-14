@@ -5,7 +5,6 @@ import java.util.Timer;
 import java.util.*;
 
 
-
 public class Countdown {
 
     Timer timer;
@@ -17,7 +16,8 @@ public class Countdown {
     public Countdown(double x, double y, int s) {
         this.seconds = s;
         timer = new Timer();
-        text = new Text(x, y, String.valueOf(seconds));
+        text = new Text(x, y, "TIME: " + String.valueOf(seconds));
+        text.setColor(org.academiadecodigo.simplegraphics.graphics.Color.WHITE);
         text.draw();
 
         task = new TimerTask() {
@@ -25,13 +25,14 @@ public class Countdown {
 
             @Override
             public void run() {
-                if (seconds > 0) {
-                    text.setText(String.valueOf(seconds));
+                if (seconds >= 0) {
+                    text.setText("TIME: " + String.valueOf(seconds));
                     text.draw();
                     seconds--;
                 } else {
-                    System.out.println("Time's up!");
                     timer.cancel();
+                    displayMessage("TIME IS UP!");
+
                 }
             }
         };
@@ -39,9 +40,17 @@ public class Countdown {
 
     }
 
-    public void start(){
+    public void start() {
         timer.schedule(task, 0, 700);
     }
 
+    public void displayMessage(String message) {
+        // Display a big message on the screen
+        Text bigText = new Text(1000, 100, message);
+        bigText.setColor(org.academiadecodigo.simplegraphics.graphics.Color.RED);
+        bigText.grow(200, 100);
+        bigText.draw();
 
+
+    }
 }

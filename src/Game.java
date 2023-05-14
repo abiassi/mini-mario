@@ -41,10 +41,10 @@ public class Game {
         score = new Score(30, 30, 0);
 
         //Create CoinScore
-        coinScore = new CoinScore(70, 30,0);
+        coinScore = new CoinScore(150, 30,0, "img/coin_01.png");
 
         //Create Countdown
-        countdown = new Countdown(100, 30, 100);
+        countdown = new Countdown(200, 30, 10);
         countdown.start();
 
         // Create Keyboard handlers
