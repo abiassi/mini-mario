@@ -13,7 +13,7 @@ public class DecorativeTile extends Tile {
     @Override // No decorative tile ex
     public void render(int x, int y) {
         // Render solid tile
-        URL imageUrl = getClass().getClassLoader().getResource("img/decorative_01.png");
+        URL imageUrl = getClass().getClassLoader().getResource("Resources/decorative_01.png");
         if (imageUrl != null) {
             String imagePath = imageUrl.getPath();
             picture = new Picture(x, y, imagePath);

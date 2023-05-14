@@ -32,7 +32,7 @@ public class Game {
 
     public void init() {
         // Parse CSV and render tilemap
-        TileMap tileMap = CSVParser.parse("src/Tests/Resources/level-1-v2.csv");
+        TileMap tileMap = CSVParser.parse("src/Resources/level-1-v2.csv");
         if (tileMap != null) {
             tileMap.init();
             tileMap.render();
@@ -46,13 +46,13 @@ public class Game {
 
 
         // Create Character.Person
-        person = new Person(50, 180, "img/mario_01.png");
+        person = new Person(50, 180, "src/Resources/mario_01.png");
 
         //Create Score
         score = new Score(60, 50, 0);
 
         //Create CoinScore
-        coinScore = new CoinScore(250, 50,0, "img/coin_01.png");
+        coinScore = new CoinScore(250, 50,0, "src/Resources/coin_01.png");
 
         //Create Countdown
         countdown = new Countdown(400, 50, 120);

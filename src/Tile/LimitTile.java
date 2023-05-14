@@ -16,7 +16,7 @@ public class LimitTile extends Tile implements Collidable {
     @Override
     public void render(int x, int y) {
         // Render solid tile
-        URL imageUrl = getClass().getClassLoader().getResource("img/limit_01.png");
+        URL imageUrl = getClass().getClassLoader().getResource("Resources/limit_01.png");
         if (imageUrl != null) {
             String imagePath = imageUrl.getPath();
             picture = new Picture(x, y, imagePath);

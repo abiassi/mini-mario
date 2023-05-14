@@ -2,14 +2,14 @@
 <project name="Mini-Mario" default="jarfile">
 
     <!-- Initialize build properties  -->
-    <target name="init" description="Initializes properties">
+    <target name="init">
         <property name="project.name" value="Mini-Mario" />
         <property name="src.dir" value="src" />
         <property name="main.class" value="Main" />
         <property name="build.dir" value="build" />
         <property name="classes.dir" value="${build.dir}/classes" />
-        <property name="resources.dir" value="resources"/>
-        <property name="lib.dir" value="lib" />
+        <property name="resources.dir" value="src/Resources"/>
+        <property name="lib.dir" value="src/lib" />
         <path id="classpath">
             <fileset dir="${lib.dir}" includes="**/*.jar" />
         </path>
@@ -27,14 +27,14 @@
 
     <!-- Compiles the source code -->
     <target name="compile" description="Compiles the source code" depends="prepare">
-        <javac srcdir="${src.dir}" destdir="${classes.dir}" source="7" target="7">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" source="14" target="14">
             <classpath refid="classpath"/>
         </javac>
     </target>
 
     <!-- Creates a JAR file -->
     <target name="jarfile" description="Archives the code" depends="compile">
-        <jar destfile="${build.dir}/${project.name}.jar" basedir="${classes.dir}">
+        <jar destfile="${build.dir}/${project.name}.jar" basedir="build/classes">
             <manifest>
                 <attribute name="Main-Class" value="${main.class}" />
                 <attribute name="Class-Path" value="${lib.dir}" />

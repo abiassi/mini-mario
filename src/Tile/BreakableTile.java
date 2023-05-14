@@ -18,7 +18,7 @@ public class BreakableTile extends Tile implements Collidable {
 
     @Override
     public void render(int x, int y) {
-        URL imageUrl = getClass().getClassLoader().getResource("img/brick_breakable_01.png");
+        URL imageUrl = getClass().getClassLoader().getResource("Resources/brick_breakable_01.png");
         if (imageUrl != null) {
             String imagePath = imageUrl.getPath();
             picture = new Picture(x, y, imagePath);
