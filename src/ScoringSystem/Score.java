@@ -20,7 +20,7 @@ public class Score {
     //if coin is collided or if enemy is killed
     public int increaseScore(){
         updateScoreDisplay();
-        return score + 100;
+        return score + 200;
     }
 
 
