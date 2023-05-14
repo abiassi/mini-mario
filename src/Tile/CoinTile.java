@@ -13,7 +13,7 @@ public class CoinTile extends Tile implements Collidable, Collectible {
     private Picture picture;
     private boolean collected;
 
-    private CoinScore coinScore;;
+    private CoinScore coinScore;
     private Score score;
 
     public CoinTile() {

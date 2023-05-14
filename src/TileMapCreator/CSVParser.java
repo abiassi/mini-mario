@@ -1,8 +1,10 @@
 package TileMapCreator;
 
+
 import Tile.Tile;
 import Tile.TileType;
 import Tile.TileFactory;
+import ScoringSystem.CoinScore;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

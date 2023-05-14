@@ -1,3 +1,6 @@
+import ScoringSystem.CoinScore;
+import ScoringSystem.Countdown;
+import ScoringSystem.Score;
 import Tile.*;
 import TileMapCreator.CSVParser;
 import TileMapCreator.TileMap;
@@ -11,6 +14,10 @@ public class Game {
     private static final String PREFIX = "resources/";
     private final int delay;
     private Person person;
+    private Score score;
+    private CoinScore coinScore;
+    private Countdown countdown;
+
     private List<Collidable> collidableTiles;
 
     public Game(int delay) { //incomplete
@@ -29,6 +36,16 @@ public class Game {
 
         // Create Character.Person
         person = new Person(30, 180, "img/mario_01.png");
+
+        //Create Score
+        score = new Score(30, 30, 0);
+
+        //Create CoinScore
+        coinScore = new CoinScore(70, 30,0);
+
+        //Create Countdown
+        countdown = new Countdown(100, 30, 100);
+        countdown.start();
 
         // Create Keyboard handlers
         MyKeyboard myKeyboard = new MyKeyboard();

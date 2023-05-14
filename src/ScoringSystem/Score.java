@@ -4,7 +4,7 @@ import org.academiadecodigo.simplegraphics.graphics.Text;
 
 public class Score {
 
-    private int score;
+    private int score = 0;
     private Text text;
 
     public Score(double x, double y, int score){

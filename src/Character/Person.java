@@ -20,8 +20,6 @@ public class Person implements Collidable {
     private static final double SPEED = 3;
     private static final float GRAVITY = 0.6f;
 
-    private CoinScore coinscore;
-
     /**
      * Constructor for Person class.
      */
