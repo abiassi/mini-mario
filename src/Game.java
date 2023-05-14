@@ -38,13 +38,13 @@ public class Game {
         person = new Person(30, 180, "img/mario_01.png");
 
         //Create Score
-        score = new Score(30, 30, 0);
+        score = new Score(60, 50, 0);
 
         //Create CoinScore
-        coinScore = new CoinScore(150, 30,0, "img/coin_01.png");
+        coinScore = new CoinScore(250, 50,0, "img/coin_01.png");
 
         //Create Countdown
-        countdown = new Countdown(200, 30, 10);
+        countdown = new Countdown(400, 50, 10);
         countdown.start();
 
         // Create Keyboard handlers

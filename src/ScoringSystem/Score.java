@@ -10,12 +10,9 @@ public class Score {
     public Score(double x, double y, int score){
         this.score = score;
         text = new Text(x, y, "SCORE: " + String.valueOf(score));
+        text.grow(15,15);
         text.setColor(org.academiadecodigo.simplegraphics.graphics.Color.WHITE);
         text.draw();
-    }
-
-    public static int getScore() {
-        return score;
     }
 
     //if coin is collided or if enemy is killed

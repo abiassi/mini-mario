@@ -1,5 +1,6 @@
 package ScoringSystem;
 
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -17,17 +18,11 @@ public class CoinScore {
     public CoinScore (double x, double y, int coins, String resource) {
         this.coins = coins;
         text = new Text(x, y, "x " + String.valueOf(coins));
-        text.setColor(org.academiadecodigo.simplegraphics.graphics.Color.WHITE);
+        text.setColor(Color.WHITE);
+        text.grow(15,15);
         text.draw();
-        picture = new Picture(text.getX() - 20, text.getY(), resource);
+        picture = new Picture(text.getX() - 20, text.getY()+ 10, resource);
         picture.draw();
-
-    }
-
-    public static void paintShape(Graphics2D g2){
-        g2.setColor(Color.BLACK);
-        g2.setFont(new Font("Arial", Font.BOLD, 10));
-        text.paintShape(g2);
 
     }
 
