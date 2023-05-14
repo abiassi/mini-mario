@@ -1,9 +1,9 @@
 package Tile;
 
+import GameCharacter.GameCharacter;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import utils.Collidable;
-import utils.CollisionDetector;
-import Character.Person;
+import utils.CollisionUtil;
 
 import java.net.URL;
 
@@ -16,7 +16,7 @@ public class MysteryBoxTile extends Tile implements Collidable {
     }
 
     @Override
-    public void render(int x, int y, int cellSize) {
+    public void render(int x, int y) {
         // Render solid tile
         URL imageUrl = getClass().getClassLoader().getResource("img/box_01.png");
         if (imageUrl != null) {
@@ -29,8 +29,24 @@ public class MysteryBoxTile extends Tile implements Collidable {
     }
 
     @Override
-    public void onCollision(Person person) {
-        return; // TODO: add interaction that adds a coin tile to the above this box
+    public void onCollision(GameCharacter person) {
+         return; // Using onCollisionMysteryBox special method here
+    }
+
+
+    public CoinTile onCollisionMysteryBox(GameCharacter person) {
+        if (!isDestroyed() && CollisionUtil.isHitFromBelow(person, this)) {
+            isDestroyed = true;
+            CoinTile coinTile = new CoinTile();
+            coinTile.render(getX(), getY() - getHeight());
+            picture.delete();
+            return coinTile;
+        }
+        return null;
+    }
+
+    public boolean isDestroyed() {
+        return isDestroyed;
     }
 
     @Override

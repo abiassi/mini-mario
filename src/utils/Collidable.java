@@ -1,11 +1,10 @@
 package utils;
-
-import Character.Person;
+import GameCharacter.GameCharacter;
 
 public interface Collidable {
     int getX();
     int getY();
     int getWidth();
     int getHeight();
-    void onCollision(Person person);
+    void onCollision(GameCharacter person);
 }

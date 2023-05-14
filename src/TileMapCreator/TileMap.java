@@ -54,7 +54,7 @@ public class TileMap {
             for (int x = 0; x < getWidth(); x++) {
                 Tile tile = getTile(x, y);
                 if (tile != null) {
-                    tile.render(PADDING + x * cellSize, PADDING + y * cellSize, cellSize);
+                    tile.render(PADDING + x * cellSize, PADDING + y * cellSize);
                 }
             }
         }

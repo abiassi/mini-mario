@@ -5,7 +5,7 @@ import ScoringSystem.Score;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import utils.Collectible;
 import utils.Collidable;
-import Character.Person;
+import GameCharacter.*;
 
 import java.net.URL;
 
@@ -18,7 +18,7 @@ public class CoinTile extends Tile implements Collidable, Collectible {
     }
 
     @Override
-    public void render(int x, int y, int cellSize) {
+    public void render(int x, int y) {
         URL imageUrl = getClass().getClassLoader().getResource("img/coin_01.png");
         if (imageUrl != null) {
             String imagePath = imageUrl.getPath();
@@ -29,7 +29,7 @@ public class CoinTile extends Tile implements Collidable, Collectible {
         }
     }
 
-    public void onCollision(Person person) {
+    public void onCollision(GameCharacter person) {
         if (collected) {
             return;
         }

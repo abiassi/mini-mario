@@ -1,41 +1,52 @@
 import ScoringSystem.CoinScore;
 import ScoringSystem.Countdown;
 import ScoringSystem.Score;
+import GameCharacter.Enemy;
 import Tile.*;
 import TileMapCreator.CSVParser;
 import TileMapCreator.TileMap;
 import utils.Collectible;
 import utils.Collidable;
-import Character.Person;
+import GameCharacter.Person;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    private static final String PREFIX = "resources/";
     private final int delay;
     private Person person;
     private Score score;
     private CoinScore coinScore;
     private Countdown countdown;
 
+    private List<Enemy> enemies;
     private List<Collidable> collidableTiles;
+    private boolean GameOver;
 
-    public Game(int delay) { //incomplete
+    public Game(int delay) {
         this.delay = delay;
     }
 
 
+
+
     public void init() {
         // Parse CSV and render tilemap
-        TileMap tileMap = CSVParser.parse("src/Tests/Resources/level1.csv");
+        TileMap tileMap = CSVParser.parse("src/Tests/Resources/level-1-v2.csv");
         if (tileMap != null) {
             tileMap.init();
             tileMap.render();
             collidableTiles = tileMap.getCollidableTiles();  // Get collidable blocks list
         }
 
+        enemies = new ArrayList<>();
+        enemies.add(new Enemy(360, 200));
+        enemies.add(new Enemy(600, 200));
+        enemies.add(new Enemy(1200, 200));
+
+
         // Create Character.Person
-        person = new Person(30, 180, "img/mario_01.png");
+        person = new Person(50, 180, "img/mario_01.png");
 
         //Create Score
         score = new Score(60, 50, 0);
@@ -55,11 +66,35 @@ public class Game {
 
     public void start() throws InterruptedException {
         // Runs loop that updates all parts
-        while (true) {
+        while (!GameOver) {
             Thread.sleep(delay);
-            person.update(collidableTiles);
-            collidableTiles.removeIf(collidable -> collidable instanceof Collectible && ((Collectible) collidable).isCollected());
-            collidableTiles.removeIf(collidable -> collidable instanceof BreakableTile && ((BreakableTile) collidable).isDestroyed());
+            person.update(collidableTiles, enemies);
+            handleCollidableRemovals();
+            updateEnemies();
+            removeDeadEnemies();
+            checkGameOver();
+        }
+    }
+
+    private void updateEnemies() {
+        for (Enemy enemy : enemies) {
+            enemy.update(collidableTiles);
+        }
+    }
+
+    private void removeDeadEnemies() {
+        enemies.removeIf(Enemy::isDead);
+    }
+
+    private void handleCollidableRemovals() {
+        collidableTiles.removeIf(collidable -> collidable instanceof Collectible && ((Collectible) collidable).isCollected());
+        collidableTiles.removeIf(collidable -> collidable instanceof BreakableTile && ((BreakableTile) collidable).isDestroyed());
+        collidableTiles.removeIf(collidable -> collidable instanceof MysteryBoxTile && ((MysteryBoxTile) collidable).isDestroyed());
+    }
+
+    private void checkGameOver() {
+        if (person.isDead() || person.hasFinishedLevel()) {
+            GameOver = true;
         }
     }
 

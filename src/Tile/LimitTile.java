@@ -1,37 +1,37 @@
 package Tile;
 
-import GameCharacter.*;
+import GameCharacter.GameCharacter;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import utils.Collidable;
 
 import java.net.URL;
 
-public class EndTile extends Tile implements Collidable {
+public class LimitTile extends Tile implements Collidable {
     private Picture picture;
-    public EndTile() {
-        super(TileType.END_TILE);
+
+    public LimitTile() {
+        super(TileType.LIMIT);
     }
 
     @Override
     public void render(int x, int y) {
-        URL imageUrl = getClass().getClassLoader().getResource("img/end_01.png");
+        // Render solid tile
+        URL imageUrl = getClass().getClassLoader().getResource("img/limit_01.png");
         if (imageUrl != null) {
             String imagePath = imageUrl.getPath();
             picture = new Picture(x, y, imagePath);
             picture.draw();
         } else {
-            throw new RuntimeException("Unable to load image for EndTile");
+            throw new RuntimeException("Unable to load image for LimitTile");
         }
     }
 
     @Override
     public void onCollision(GameCharacter person) {
-        if (person instanceof Person) {
-            ((Person) person).finishLevel();
+        if (person.getVelocityY() > 1) { // If player hits limit from above, means he's falling
+            person.die();
         }
     }
-
-
 
     @Override
     public int getX() {

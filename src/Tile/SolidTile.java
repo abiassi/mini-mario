@@ -1,9 +1,8 @@
 package Tile;
 
+import GameCharacter.GameCharacter;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import utils.Collidable;
-import utils.CollisionDetector;
-import Character.Person;
 
 import java.net.URL;
 
@@ -15,7 +14,7 @@ public class SolidTile extends Tile implements Collidable {
     }
 
     @Override
-    public void render(int x, int y, int cellSize) {
+    public void render(int x, int y) {
         // Render solid tile
         URL imageUrl = getClass().getClassLoader().getResource("img/brick_floor_01.png");
         if (imageUrl != null) {
@@ -28,7 +27,7 @@ public class SolidTile extends Tile implements Collidable {
     }
 
     @Override
-    public void onCollision(Person person) {
+    public void onCollision(GameCharacter person) {
         return; // No special behavior
     }
 

@@ -7,6 +7,7 @@ public class TileFactory {
         return switch (type) {
             case SKY -> null; // Sky is an empty tile
             case GROUND_BRICK -> new SolidTile();
+            case LIMIT -> new LimitTile();
             case MYSTERY_BOX -> new MysteryBoxTile();
             case BREAKABLE_BRICK -> new BreakableTile();
             case DECORATIVE_TILE -> new DecorativeTile();

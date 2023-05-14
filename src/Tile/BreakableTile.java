@@ -1,8 +1,8 @@
 package Tile;
 
+import GameCharacter.*;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import utils.Collidable;
-import Character.Person;
 import utils.CollisionUtil;
 
 import java.net.URL;
@@ -17,7 +17,7 @@ public class BreakableTile extends Tile implements Collidable {
     }
 
     @Override
-    public void render(int x, int y, int cellSize) {
+    public void render(int x, int y) {
         URL imageUrl = getClass().getClassLoader().getResource("img/brick_breakable_01.png");
         if (imageUrl != null) {
             String imagePath = imageUrl.getPath();
@@ -29,7 +29,7 @@ public class BreakableTile extends Tile implements Collidable {
     }
 
     @Override
-    public void onCollision(Person person) {
+    public void onCollision(GameCharacter person) {
         if (CollisionUtil.isHitFromBelow(person, this)) {
             timesHit++;
 
