@@ -30,6 +30,7 @@ public class MysteryBoxTile extends Tile implements Collidable {
 
     @Override
     public void onCollision(Person person, CollisionDetector.CollisionSide side) {
+        /*
         if (isDestroyed) {
             return;
         }
@@ -44,6 +45,8 @@ public class MysteryBoxTile extends Tile implements Collidable {
             case LEFT -> person.stopMovement(CollisionDetector.CollisionSide.LEFT, this);
             case RIGHT -> person.stopMovement(CollisionDetector.CollisionSide.RIGHT, this);
         }
+
+         */
     }
 
     @Override
