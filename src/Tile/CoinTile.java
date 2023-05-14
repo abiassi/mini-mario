@@ -16,7 +16,7 @@ public class CoinTile extends Tile implements Collidable, Collectible {
     }
 
     @Override
-    public void render(int x, int y, int cellSize) {
+    public void render(int x, int y) {
         URL imageUrl = getClass().getClassLoader().getResource("img/coin_01.png");
         if (imageUrl != null) {
             String imagePath = imageUrl.getPath();

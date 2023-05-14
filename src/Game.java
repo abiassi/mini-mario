@@ -10,14 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    private static final String PREFIX = "resources/";
     private final int delay;
     private Person person;
-    private Enemy goomba1;
     private List<Enemy> enemies;
     private List<Collidable> collidableTiles;
 
-    public Game(int delay) { //incomplete
+    public Game(int delay) {
         this.delay = delay;
     }
 
@@ -53,8 +51,7 @@ public class Game {
         while (true) {
             Thread.sleep(delay);
             person.update(collidableTiles, enemies);
-            collidableTiles.removeIf(collidable -> collidable instanceof Collectible && ((Collectible) collidable).isCollected());
-            collidableTiles.removeIf(collidable -> collidable instanceof BreakableTile && ((BreakableTile) collidable).isDestroyed());
+            handleCollidableRemovals();
             updateEnemies();
             removeDeadEnemies();
         }
@@ -70,6 +67,11 @@ public class Game {
         enemies.removeIf(Enemy::isDead);
     }
 
+    private void handleCollidableRemovals() {
+        collidableTiles.removeIf(collidable -> collidable instanceof Collectible && ((Collectible) collidable).isCollected());
+        collidableTiles.removeIf(collidable -> collidable instanceof BreakableTile && ((BreakableTile) collidable).isDestroyed());
+        collidableTiles.removeIf(collidable -> collidable instanceof MysteryBoxTile && ((MysteryBoxTile) collidable).isDestroyed());
+    }
 
 
 
