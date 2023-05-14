@@ -20,6 +20,7 @@ public class Person extends GameCharacter implements Collidable {
      */
     public Person(int x, int y, String resource) {
         super(x, y, resource);
+        onGround = true;
     }
 
     public void update(List<Collidable> collidableTiles, List<Enemy> enemies) {
@@ -34,9 +35,6 @@ public class Person extends GameCharacter implements Collidable {
 
         picture.translate(positionX - picture.getX(), positionY - picture.getY());
     }
-
-
-
 
     /**
      * Handle horizontal collisions with collidable tiles.
@@ -61,6 +59,7 @@ public class Person extends GameCharacter implements Collidable {
                     positionY = tile.getY() + tile.getHeight();
                     velocityY = 0;
                 }
+                onGround = true;
             }
         }
         collidableTiles.addAll(newTiles);

@@ -16,6 +16,7 @@ public abstract class GameCharacter implements Collidable {
     protected static final double SPEED = 3;
     protected static final float GRAVITY = 0.6f;
     protected boolean dead;
+    protected boolean onGround;
 
 
     public GameCharacter(int x, int y, String resource) {
@@ -26,7 +27,10 @@ public abstract class GameCharacter implements Collidable {
     }
 
     public void moveUp() {
-        velocityY += -SPEED * 3;
+        if (onGround) { // Only allow jumping if on the ground
+            velocityY += -SPEED * 3;
+            onGround = false; // Set onGround flag to false after jumping
+        }
     }
 
     public void moveLeft() {
@@ -95,6 +99,7 @@ public abstract class GameCharacter implements Collidable {
                     positionY = tile.getY() + tile.getHeight();
                     velocityY = 0;
                 }
+                onGround = true;
             }
         }
     }
@@ -113,6 +118,7 @@ public abstract class GameCharacter implements Collidable {
                     positionX = tile.getX() + tile.getWidth();
                     velocityX = 0;
                 }
+
             }
         }
     }
