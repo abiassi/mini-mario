@@ -38,8 +38,8 @@ public class CoinTile extends Tile implements Collidable, Collectible {
         }
         picture.delete();
         collected = true;
-        coinScore.increaseCoins();
-        score.increaseScore();
+        CoinScore.increaseCoins();
+        Score.increaseScore();
     }
 
     @Override

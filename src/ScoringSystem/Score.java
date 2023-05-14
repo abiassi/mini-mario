@@ -4,8 +4,8 @@ import org.academiadecodigo.simplegraphics.graphics.Text;
 
 public class Score {
 
-    private int score = 0;
-    private Text text;
+    private static int score = 0;
+    private static Text text;
 
     public Score(double x, double y, int score){
         this.score = score;
@@ -13,18 +13,18 @@ public class Score {
         text.draw();
     }
 
-    public int getScore() {
+    public static int getScore() {
         return score;
     }
 
     //if coin is collided or if enemy is killed
-    public int increaseScore(){
+    public static int increaseScore(){
         updateScoreDisplay();
-        return score + 200;
+        return score += 200;
     }
 
 
-    public void updateScoreDisplay() {
+    public static void updateScoreDisplay() {
         text.setText(String.valueOf(score));
     }
 /*

@@ -4,8 +4,8 @@ import org.academiadecodigo.simplegraphics.graphics.Text;
 
 public class CoinScore {
 
-    private Text text;
-    private int coins;
+    private static Text text;
+    private static int coins;
 
     public CoinScore (double x, double y, int coins) {
         this.coins = coins;
@@ -13,16 +13,16 @@ public class CoinScore {
         text.draw();
     }
 
-    public int getCoinScore() {
+    public static int getCoinScore() {
         return coins;
     }
 
-    public void increaseCoins(){
+    public static void increaseCoins(){
         updateCoinsDisplay();
         coins++;
     }
 
-    public void updateCoinsDisplay() {
+    public static void updateCoinsDisplay() {
         text.setText(String.valueOf(coins));
     }
 
