@@ -1,8 +1,6 @@
 package GameCharacter;
 
-import utils.Collectible;
 import utils.Collidable;
-import utils.CollisionDetector;
 import java.util.List;
 import java.util.Random;
 
@@ -27,13 +25,11 @@ public class Enemy extends GameCharacter implements Collidable {
 
     @Override
     public void onCollision(GameCharacter person) {
-        System.out.println("On Collision");
-        if (person.velocityY > 1) { // Setting threshold since there is some jitter coming from gravity
+        if (person.getVelocityY() > 1) { // Setting threshold since there is some jitter coming from gravity
             die();
             // TODO: add score
         } else {
             person.die();
-            // TODO: Add gameOver
         }
     }
 

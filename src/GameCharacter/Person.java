@@ -13,6 +13,7 @@ import java.util.List;
  * Person class representing a character in the game.
  */
 public class Person extends GameCharacter implements Collidable {
+    private boolean finishedLevel;
 
     /**
      * Constructor for Person class.
@@ -107,10 +108,17 @@ public class Person extends GameCharacter implements Collidable {
         }
     }
 
-
     @Override
     public void onCollision(GameCharacter person) {
         // Intentionally left empty as Person does not have any specific behavior when colliding with other objects
+    }
+
+    public boolean hasFinishedLevel() {
+        return finishedLevel;
+    }
+
+    public void finishLevel() {
+        finishedLevel = true;
     }
 
 
