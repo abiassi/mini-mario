@@ -5,6 +5,7 @@ import GameCharacter.Enemy;
 import Tile.*;
 import TileMapCreator.CSVParser;
 import TileMapCreator.TileMap;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 import utils.Collectible;
 import utils.Collidable;
 import GameCharacter.Person;
@@ -62,6 +63,7 @@ public class Game {
         MyKeyboard myKeyboard = new MyKeyboard();
         myKeyboard.init();
         myKeyboard.setPerson(person);
+
 }
 
     public void start() throws InterruptedException {
@@ -95,6 +97,14 @@ public class Game {
     private void checkGameOver() {
         if (person.isDead() || person.hasFinishedLevel()) {
             GameOver = true;
+            Picture picture = new Picture(960,50,"game.over.menu.jpeg");
+            picture.draw();
+        }
+        if(person.hasFinishedLevel()){
+            GameOver = true;
+            Picture picture1 = new Picture(960,50,"level.com.menu.jpeg");
+            picture1.draw();
+
         }
     }
 
