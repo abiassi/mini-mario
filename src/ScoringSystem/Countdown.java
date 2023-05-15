@@ -27,7 +27,7 @@ public class Countdown {
 
             @Override
             public void run() {
-                if (seconds > 0) {
+                if (seconds >= 0) {
                     updateText(seconds);
                     seconds--;
                 } else {

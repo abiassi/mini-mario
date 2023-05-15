@@ -1,5 +1,6 @@
 package GameCharacter;
 
+import ScoringSystem.Score;
 import utils.Collidable;
 import java.util.List;
 import java.util.Random;
@@ -16,7 +17,8 @@ public class Enemy extends GameCharacter implements Collidable {
      * Constructor for Enemy class.
      */
     public Enemy(int x, int y) {
-        super(x, y, "/img/goomba_01.png");
+        super(x, y, "src/Resources/goomba_01.png");
+        onGround = true;
         initialX = x;
         lastUpdate = System.currentTimeMillis();
         Random random = new Random();
@@ -27,7 +29,7 @@ public class Enemy extends GameCharacter implements Collidable {
     public void onCollision(GameCharacter person) {
         if (person.getVelocityY() > 1) { // Setting threshold since there is some jitter coming from gravity
             die();
-            // TODO: add score
+            Score.increaseScore();
         } else {
             person.die();
         }

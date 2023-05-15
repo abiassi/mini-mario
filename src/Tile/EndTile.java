@@ -4,7 +4,6 @@ import GameCharacter.*;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import utils.Collidable;
 
-import java.net.URL;
 
 public class EndTile extends Tile implements Collidable {
     private Picture picture;
@@ -14,14 +13,9 @@ public class EndTile extends Tile implements Collidable {
 
     @Override
     public void render(int x, int y) {
-        URL imageUrl = getClass().getClassLoader().getResource("img/end_01.png");
-        if (imageUrl != null) {
-            String imagePath = imageUrl.getPath();
-            picture = new Picture(x, y, imagePath);
+            picture = new Picture(x, y, "src/Resources/end_01.png");
             picture.draw();
-        } else {
-            throw new RuntimeException("Unable to load image for EndTile");
-        }
+
     }
 
     @Override
